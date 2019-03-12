@@ -154,6 +154,9 @@ public class Refactoring {
 			// quality never alters
 			// not for sale
 			break;
+		case "Conjured":
+			item.quality /= 2;
+			break;
 		default:
 			item.sellIn -= 1;
 			break;

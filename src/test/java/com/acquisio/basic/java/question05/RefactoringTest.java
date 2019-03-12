@@ -7,7 +7,7 @@ import org.junit.Test;
 public class RefactoringTest {
 
 	@Test
-	public void testName() {
+	public void testRefactorCompatibility() {
 		Item[] items = new Item[] { new Item("foo", 0, 0), new Item("Aged Brie", 1000, 1),
 				new Item("Backstage passes to a TAFKAL80ETC concert", 10, 3),
 				new Item("Sulfuras, Hand of Ragnaros", -1, 80) };
@@ -30,8 +30,22 @@ public class RefactoringTest {
 				System.out.println("--------------------------------------");
 				assertEquals(appObsolete.items[itemIndex].toString(), app.items[itemIndex].toString());
 			}
-
 		}		
+	}
+	
+	@Test
+	public void testNewConjuredItemType() {
+		
+		Item[] items = new Item[] { new Item("Conjured", 20, 14 )};
+		Refactoring app = new Refactoring(items);
+		app.updateQuality();
+		assertEquals( 7, items[0].quality);
+		app.updateQuality();
+		assertEquals( 3, items[0].quality);
+		app.updateQuality();
+		assertEquals( 1, items[0].quality);
+		app.updateQuality();
+		assertEquals( 0, items[0].quality);
 	}
 
 }
